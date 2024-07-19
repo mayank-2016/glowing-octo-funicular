@@ -18,14 +18,42 @@
 <body>
 	<div class="container mx-auto px-4">
 		<h2 class="text-xl font-semibold my-4">Places to Visit Tracker</h2>
-		<form id="placeForm" class="flex mb-4">
-			<input type="text" id="placeInput" placeholder="Enter a place" required class="flex-1 p-2 border border-gray-300 rounded mr-2">
-			<button type="submit" class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add Place</button>
-		</form>
-		<div id="controls" class="mb-4">
-			<button id="clearList" class="btn bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Clear List</button>
+		<div class="flex flex-col min-h-screen w-full"> <!-- Ensure this div is the main container -->
+		  <style>
+			html, body {
+			  height: 100%; /* Ensure the html and body tags take up the full height of the viewport */
+			  margin: 0; /* Reset default margin */
+			  padding: 0; /* Reset default padding */
+			  overflow-y: auto; /* Only show vertical scrollbar when needed */
+			}
+		
+			/* Ensure the main container div does not exceed the viewport height unless necessary */
+			.flex.flex-col.min-h-screen {
+			  min-height: 80vh; /* Use viewport height (vh) unit to ensure it covers the full viewport height */
+			  display: flex;
+			  flex-direction: column;
+			}
+		  </style>
+			<div class="flex-1"> <!-- This div wraps all content except the footer -->
+                <form id="placeForm" class="flex mb-4">
+                  <input type="text" id="placeInput" placeholder="Enter a place" required class="flex-1 p-2 border border-gray-300 rounded mr-2">
+                  <button type="submit" class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add Place</button>
+                </form>
+                <!-- Scrollable list container -->
+                <div class="scrollable-list">
+				  <!-- Your list items go here -->
+				</div>
+				<div id="controls" class="mb-4">
+					<button id="clearList" class="btn bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Clear List</button>
+				</div>
+				<ul id="placesList" class="list-disc pl-5"></ul>
+			</div> <!-- End of content wrapper -->
+			<footer class="w-full bg-blue-500 text-white text-center p-4 mt-8">
+				<p>Made with <a href="https://github.com" target="_blank" class="text-white hover:text-blue-300">GitHub</a></p>
+				<p>Check out the project repository <a href="https://github.com/mayank-2016/glowing-octo-funicular" target="_blank" class="text-white hover:text-blue-300">here</a>.</p>
+			</footer>
 		</div>
-		<ul id="placesList" class="list-disc pl-5"></ul>
+		<!-- Ensure there are no additional containers around the footer that could restrict its width -->
 	</div>
 	<!-- JavaScript here -->
 	<script>
