@@ -36,9 +36,20 @@
 	
 		function addPlaceToList(place) {
 			const li = document.createElement('li');
-			li.textContent = place;
-			// Adding Tailwind CSS classes for styling
-			li.className = 'p-4 mb-2 bg-white border border-gray-200 rounded shadow';
+			li.className = 'p-4 mb-2 bg-white border border-gray-200 rounded shadow flex justify-between items-center';
+		
+			const textSpan = document.createElement('span');
+			textSpan.textContent = place;
+		
+			const searchLink = document.createElement('a');
+			searchLink.href = `https://www.google.com/search?q=${encodeURIComponent(place)}`;
+			searchLink.textContent = 'Search on Google';
+			searchLink.className = 'text-blue-500 hover:text-blue-700';
+			searchLink.target = '_blank'; // Open in a new tab
+		
+			li.appendChild(textSpan);
+			li.appendChild(searchLink);
+		
 			placesList.appendChild(li);
 		}
 	
