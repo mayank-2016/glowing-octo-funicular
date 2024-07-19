@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Places to Visit Tracker</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        #placesList { margin-top: 20px; }
+        li { margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <h2>Places to Visit Tracker</h2>
+    <form id="placeForm">
+        <input type="text" id="placeInput" placeholder="Enter a place" required>
+        <button type="submit">Add Place</button>
+    </form>
+    <ul id="placesList"></ul>
+
+
+    <script>
+        const form = document.getElementById('placeForm');
+        const placeInput = document.getElementById('placeInput');
+        const placesList = document.getElementById('placesList');
+
+        function addPlaceToList(place) {
+            const li = document.createElement('li');
+            li.textContent = place;
+            placesList.appendChild(li);
+        }
+
+        function loadPlaces() {
+            const places = JSON.parse(localStorage.getItem('places')) || [];
+            places.forEach(addPlaceToList);
+        }
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const place = placeInput.value.trim();
+            if (place) {
+                addPlaceToList(place);
+                const places = JSON.parse(localStorage.getItem('places')) || [];
+                places.push(place);
+                localStorage.setItem('places', JSON.stringify(places));
+                placeInput.value = ''; // Clear input field
+            }
+        });
+
+        window.addEventListener('load', loadPlaces);
+    </script>
+</body
